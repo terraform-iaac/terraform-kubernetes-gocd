@@ -26,7 +26,7 @@ echo "Trying to configure cluster profile." >>/godata/logs/preconfigure.log
         "properties": [
               {
                 "key": "go_server_url",
-                "value": "http://${gocd_fullname}-server:${server_service_httpPort}/go"
+                "value": "http://${gocd_name}-server:${server_service_httpPort}/go"
             },
             {
                 "key": "kubernetes_cluster_url",
@@ -58,7 +58,7 @@ echo "Trying to create an elastic profile now." >>/godata/logs/preconfigure.log
           },
           {
             "key": "PodConfiguration",
-            "value": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: gocd-agent-{{ `{{ POD_POSTFIX }}` }}\n  labels:\n    app: web\nspec:\n  serviceAccountName: ${agentServiceAccountName}\n  containers:\n    - name: gocd-agent-container-{{ `{{ CONTAINER_POSTFIX }}` }}\n      image: gocd/gocd-agent-docker-dind:v${AppVersion}\n      securityContext:\n        privileged: true"
+            "value": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: gocd-agent-{{ POD_POSTFIX }}\n  labels:\n    app: web\nspec:\n  serviceAccountName: ${agentServiceAccountName}\n  containers:\n    - name: gocd-agent-container-{{ CONTAINER_POSTFIX }}\n      image: gocd/gocd-agent-docker-dind:${AppVersion}\n      securityContext:\n        privileged: true"
           },
           {
             "key": "PodSpecType",
