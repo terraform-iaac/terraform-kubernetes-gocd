@@ -110,6 +110,7 @@ variable "gocd_server_ports" {
   ]
 }
 variable "tls" {
+  type = list(string)
   description = "(Optional) Define TLS , for use only HTTPS"
   default = []
 }
