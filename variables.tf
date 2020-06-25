@@ -114,7 +114,7 @@ variable "tls" {
   description = "(Optional) Define TLS , for use only HTTPS"
   default = []
 }
-variable "tls_host" {
+variable "tls_hosts" {
   description = "(Optional) Define TLS with host"
   default = []
 }

@@ -94,7 +94,7 @@ module "ingress" {
   ]
 
   tls = var.tls
-  tls_host = var.tls_host
+  tls_hosts = var.tls_hosts
 
   annotations = var.ingress_annotations
 }
