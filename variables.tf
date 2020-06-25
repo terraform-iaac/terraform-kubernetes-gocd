@@ -114,6 +114,10 @@ variable "tls" {
   description = "(Optional) Define TLS , for use only HTTPS"
   default = []
 }
+variable "tls_host" {
+  description = "(Optional) Define TLS with host"
+  default = []
+}
 variable "ingress_annotations" {
   description = "(Optional) Set addional annontations for ingress"
   default = {

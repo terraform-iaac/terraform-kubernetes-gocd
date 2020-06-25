@@ -92,6 +92,9 @@ module "ingress" {
       internal_port = var.gocd_server_ports[0].internal_port
     }
   ]
+
   tls = var.tls
+  tls_host = var.tls_host
+
   annotations = var.ingress_annotations
 }
