@@ -30,6 +30,7 @@ module "gocd_server" {
   liveness_probe = var.gocd_server_probe
   lifecycle_events = var.gocd_server_lifecycle_events
   tty = false
+  node_selector = var.gocd_server_node_selector
 
   volume_mount = [
     {

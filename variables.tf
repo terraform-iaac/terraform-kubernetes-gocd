@@ -148,3 +148,8 @@ variable "agent_image" {
   type = string
   default = "gocd/gocd-agent-alpine-3.9"
 }
+variable "gocd_server_node_selector" {
+  description = "(Optional) Specify node selector for pod"
+  type = map(string)
+  default = null
+}
