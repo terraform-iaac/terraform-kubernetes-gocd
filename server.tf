@@ -1,7 +1,7 @@
 resource "kubernetes_config_map" "preconfigure_server" {
   metadata {
     name = var.gocd_name
-    namespace = var.gocd_namespace
+    namespace = kubernetes_namespace.namespace.id
     labels = {
       app = var.gocd_name
       component = "server"
