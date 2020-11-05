@@ -13,7 +13,7 @@ resource "kubernetes_config_map" "preconfigure_server" {
 }
 
 module "gocd_server" {
-  source = "git::https://github.com/greg-solutions/terraform_k8s_deploy.git?ref=v1.0.3"
+  source = "git::https://github.com/greg-solutions/terraform_k8s_deploy.git?ref=v1.0.8"
   image = "${var.gocd_server_image}:${var.gocd_image_tag}"
   name = "${var.gocd_name}-server"
   namespace = kubernetes_namespace.namespace.id
@@ -83,7 +83,7 @@ module "service" {
 }
 
 module "ingress" {
-  source = "git::https://github.com/greg-solutions/terraform_k8s_ingress.git?ref=v1.0.1"
+  source = "git::https://github.com/greg-solutions/terraform_k8s_ingress.git?ref=v1.0.2"
   app_name = "${var.gocd_name}-server"
   app_namespace = kubernetes_namespace.namespace.id
   domain_name = var.domain
