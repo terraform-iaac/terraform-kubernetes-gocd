@@ -28,7 +28,7 @@ variable "namespace_labels" {
 variable "gocd_image_tag" {
   description = "(Optional) Docker image tag for server & agent"
   type = string
-  default = "v20.6.0"
+  default = "v20.9.0"
 }
 variable "gocd_server_image" {
   description = "(Optional) Docker image for server & agent"
