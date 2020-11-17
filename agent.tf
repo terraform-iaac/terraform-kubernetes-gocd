@@ -1,5 +1,8 @@
 module "gocd_agent" {
   source = "git::https://github.com/greg-solutions/terraform_k8s_deploy.git?ref=v1.0.8"
+
+  strategy_update = "Recreate"
+
   name = "${var.gocd_name}-agent"
   namespace = kubernetes_namespace.namespace.id
   image = "${var.agent_image}:${var.gocd_image_tag}"

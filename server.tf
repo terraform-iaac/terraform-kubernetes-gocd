@@ -14,6 +14,9 @@ resource "kubernetes_config_map" "preconfigure_server" {
 
 module "gocd_server" {
   source = "git::https://github.com/greg-solutions/terraform_k8s_deploy.git?ref=v1.0.8"
+
+  strategy_update = "Recreate"
+
   image = "${var.gocd_server_image}:${var.gocd_image_tag}"
   name = "${var.gocd_name}-server"
   namespace = kubernetes_namespace.namespace.id
