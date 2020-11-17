@@ -54,11 +54,23 @@ variable "gocd_server_env" {
   default = [
     {
       name = "GOCD_PLUGIN_INSTALL_kubernetes-elastic-agents"
-      value = "https://github.com/gocd/kubernetes-elastic-agents/releases/download/v3.4.0-196/kubernetes-elastic-agent-3.4.0-196.jar"
+      value = "https://github.com/gocd/kubernetes-elastic-agents/releases/download/v3.7.1-230/kubernetes-elastic-agent-3.7.1-230.jar"
     },
     {
       name = "GOCD_PLUGIN_INSTALL_docker-registry-artifact-plugin"
       value = "https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.1.0-104/docker-registry-artifact-plugin-1.1.0-104.jar"
+    },
+    {
+      name = "GOCD_PLUGIN_INSTALL_gocd-ec2-elastic-agent-plugin"
+      value = "https://github.com/iriusrisk/GoCD-EC2-Elastic-Agent-Plugin/releases/download/2.2.0/gocd-ec2-elastic-agent-plugin-2.2.0.jar"
+    },
+    {
+      name = "GOCD_PLUGIN_INSTALL_gocd-ldap-authorization-plugin"
+      value = "https://github.com/gocd/gocd-ldap-authorization-plugin/releases/download/v4.0.1-6/gocd-ldap-authorization-plugin-4.0.1-6.jar"
+    },
+    {
+      name = "GOCD_PLUGIN_INSTALL_gocd-slack-notifier"
+      value = "https://github.com/ashwanthkumar/gocd-slack-build-notifier/releases/download/v2.0.2/gocd-slack-notifier-2.0.2.jar"
     }
   ]
 }
@@ -146,7 +158,7 @@ variable "gocd_agent_env" {
 variable "agent_image" {
   description = "(Optional) Docker image for agent"
   type = string
-  default = "gocd/gocd-agent-alpine-3.9"
+  default = "gocd/gocd-agent-alpine-3.10"
 }
 variable "gocd_server_node_selector" {
   description = "(Optional) Specify node selector for pod"
