@@ -165,3 +165,12 @@ variable "gocd_server_node_selector" {
   type = map(string)
   default = null
 }
+variable "resources" {
+  description = "(Optional) Resources for GoCD Server"
+  default = [
+    {
+      limit_memory   = "2000Mi"
+      request_memory = "800Mi"
+    }
+  ]
+}

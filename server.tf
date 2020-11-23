@@ -35,6 +35,8 @@ module "gocd_server" {
   tty = false
   node_selector = var.gocd_server_node_selector
 
+  resources     = var.resources
+
   volume_mount = [
     {
       mount_path = "/preconfigure_server.sh"
