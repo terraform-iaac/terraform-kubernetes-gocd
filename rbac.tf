@@ -1,6 +1,6 @@
 resource "kubernetes_service_account" "service_account" {
   metadata {
-    name = var.server_service_account_name
+    name      = var.server_service_account_name
     namespace = kubernetes_namespace.namespace.id
     labels = {
       app = var.gocd_name
@@ -12,7 +12,7 @@ resource "kubernetes_service_account" "service_account" {
 
 resource "kubernetes_secret" "token" {
   metadata {
-    name = kubernetes_service_account.service_account.metadata[0].name
+    name      = kubernetes_service_account.service_account.metadata[0].name
     namespace = kubernetes_namespace.namespace.id
   }
 }
@@ -26,23 +26,23 @@ resource "kubernetes_cluster_role" "cluster_role" {
   }
   rule {
     api_groups = [""]
-    resources = ["pods", "pods/log"]
-    verbs = ["*"]
+    resources  = ["pods", "pods/log"]
+    verbs      = ["*"]
   }
   rule {
     api_groups = [""]
-    resources = ["nodes"]
-    verbs = ["get", "list"]
+    resources  = ["nodes"]
+    verbs      = ["get", "list"]
   }
   rule {
     api_groups = [""]
-    resources = ["events"]
-    verbs = ["watch", "list"]
+    resources  = ["events"]
+    verbs      = ["watch", "list"]
   }
   rule {
     api_groups = [""]
-    resources = ["namespaces"]
-    verbs = ["get"]
+    resources  = ["namespaces"]
+    verbs      = ["get"]
   }
 }
 
@@ -54,13 +54,13 @@ resource "kubernetes_cluster_role_binding" "cluster_role_binding" {
     }
   }
   subject {
-    kind = "ServiceAccount"
-    name = kubernetes_service_account.service_account.metadata[0].name
+    kind      = "ServiceAccount"
+    name      = kubernetes_service_account.service_account.metadata[0].name
     namespace = kubernetes_namespace.namespace.id
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
-    kind = "ClusterRole"
-    name = kubernetes_cluster_role.cluster_role.metadata[0].name
+    kind      = "ClusterRole"
+    name      = kubernetes_cluster_role.cluster_role.metadata[0].name
   }
 }

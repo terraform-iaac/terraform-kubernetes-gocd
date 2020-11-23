@@ -4,6 +4,6 @@ resource "kubernetes_namespace" "namespace" {
       name = var.gocd_namespace
     }
     labels = var.namespace_labels
-    name = var.gocd_namespace
+    name   = var.gocd_namespace
   }
 }
