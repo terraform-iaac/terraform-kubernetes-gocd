@@ -170,7 +170,7 @@ variable "resources" {
   default = [
     {
       limit_memory   = "2000Mi"
-      request_memory = "800Mi"
+      request_memory = "1400Mi"
     }
   ]
 }
