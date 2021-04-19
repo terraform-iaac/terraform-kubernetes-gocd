@@ -28,7 +28,7 @@ variable "namespace_labels" {
 variable "gocd_image_tag" {
   description = "(Optional) Docker image tag for server & agent"
   type        = string
-  default     = "v20.9.0"
+  default     = "v21.2.0"
 }
 variable "gocd_server_image" {
   description = "(Optional) Docker image for server & agent"
@@ -58,7 +58,7 @@ variable "gocd_server_env" {
     },
     {
       name  = "GOCD_PLUGIN_INSTALL_docker-registry-artifact-plugin"
-      value = "https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.1.0-104/docker-registry-artifact-plugin-1.1.0-104.jar"
+      value = "https://github.com/gocd/docker-registry-artifact-plugin/releases/download/v1.2.0-127/docker-registry-artifact-plugin-1.2.0-127.jar"
     },
     {
       name  = "GOCD_PLUGIN_INSTALL_gocd-ec2-elastic-agent-plugin"
@@ -169,8 +169,8 @@ variable "resources" {
   description = "(Optional) Resources for GoCD Server"
   default = [
     {
-      limit_memory   = "2000Mi"
-      request_memory = "1400Mi"
+      limit_memory   = "2200Mi"
+      request_memory = "1600Mi"
     }
   ]
 }

@@ -13,27 +13,37 @@ resource "kubernetes_config_map" "preconfigure_server" {
 }
 
 module "gocd_server" {
-  source = "git::https://github.com/greg-solutions/terraform_k8s_deploy.git?ref=v1.0.8"
+  source  = "terraform-iaac/deployment/kubernetes"
+  version = "1.0.8"
 
   strategy_update = "Recreate"
 
-  image     = "${var.gocd_server_image}:${var.gocd_image_tag}"
   name      = "${var.gocd_name}-server"
   namespace = kubernetes_namespace.namespace.id
+
+  image = "${var.gocd_server_image}:${var.gocd_image_tag}"
+
   custom_labels = {
     app       = var.gocd_name
     component = "server"
   }
-  env                   = var.gocd_server_env
-  internal_port         = var.gocd_server_ports
+
+  env = var.gocd_server_env
+
+  internal_port = var.gocd_server_ports
+
   service_account_name  = var.server_service_account_name
   service_account_token = true
-  security_context      = var.gocd_security_context
-  readiness_probe       = var.gocd_server_probe
-  liveness_probe        = var.gocd_server_probe
-  lifecycle_events      = var.gocd_server_lifecycle_events
-  tty                   = false
-  node_selector         = var.gocd_server_node_selector
+
+  security_context = var.gocd_security_context
+
+  readiness_probe  = var.gocd_server_probe
+  liveness_probe   = var.gocd_server_probe
+  lifecycle_events = var.gocd_server_lifecycle_events
+
+  tty = false
+
+  node_selector = var.gocd_server_node_selector
 
   resources = var.resources
 
@@ -76,22 +86,30 @@ module "gocd_server" {
 }
 
 module "service" {
-  source        = "git::https://github.com/greg-solutions/terraform_k8s_service.git?ref=v1.0.0"
+  source  = "terraform-iaac/service/kubernetes"
+  version = "1.0.0"
+
   app_name      = "${var.gocd_name}-server"
   app_namespace = kubernetes_namespace.namespace.id
-  port_mapping  = var.gocd_server_ports
+
+  port_mapping = var.gocd_server_ports
+
+  type = "NodePort"
+
   custom_labels = {
     app       = var.gocd_name
     component = "server"
   }
-  type = "NodePort"
 }
 
 module "ingress" {
-  source        = "git::https://github.com/greg-solutions/terraform_k8s_ingress.git?ref=v1.0.2"
+  source  = "terraform-iaac/ingress/kubernetes"
+  version = "1.0.2"
+
   app_name      = "${var.gocd_name}-server"
   app_namespace = kubernetes_namespace.namespace.id
-  domain_name   = var.domain
+
+  domain_name = var.domain
   web_internal_port = [
     {
       sub_domain    = "gocd."

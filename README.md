@@ -1,5 +1,18 @@
-### Terraform k8s gocd module with elastic and static agents
+Terraform module for GoCD
+==========================================
 
-### Poviders Version:
-        kubernetes = 1.11.1
-        template   = ~> 2.0
+## Terraform Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.26 |
+| kubernetes | >= 1.32.0 |
+
+## Inputs
+See in example directory & variables.tf
+
+## Outputs
+| Name | Description |
+|------|:-----------:|
+| namespace | Kubernetes namespace resource id |
+| urls | URLs in ingress ||
